@@ -33,12 +33,15 @@ public class Summoner : MonoBehaviour
         
         // Raycastの衝突情報は距離によってソートされるため、0番目が最も近い場所でヒットした情報となります
         var hitPose = _hits[0].pose;
+        var pos = hitPose.position;
+//        var pos = hitPose.position + new Vector3(0f, 0.5f, 0f);
         
-        if (_girl){
-            _girl.transform.position = hitPose.position;
+        if (_girl) {
+            _girl.transform.position = pos;
         }
-        else{
-            _girl = Instantiate(_girlPrefab, hitPose.position, Quaternion.identity);
+        else {
+            _girl = Instantiate(_girlPrefab, pos, Quaternion.identity);
+            _girl.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
 
         GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>().text = hitPose.position.ToString();
