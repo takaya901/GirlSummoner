@@ -65,7 +65,7 @@ public class Transfer : MonoBehaviour
         {
             if (material.shader != _transfer) return;
 
-            var height = Mathf.MoveTowards(material.GetFloat(_threshold), -1f, Time.deltaTime * 0.3f);
+            var height = Mathf.MoveTowards(material.GetFloat(_threshold), -1f, Time.deltaTime * 0.5f);
             material.SetFloat(_threshold, height);
 
             if (material.GetFloat(_threshold) <= -1f) {

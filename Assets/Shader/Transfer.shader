@@ -81,10 +81,10 @@
 
                 float diff = i.oPos.x - _Threshold;
                 clip(diff);
-                if(diff < _LazerHeight){
-                    fixed4 lazerCol = tex2D(_LazerTex, diff / _LazerHeight);
-                    col.rgb = col.rgb * (1 - lazerCol.a) + lazerCol.rgb * col.a;
-                }
+                //if(diff < _LazerHeight){
+                //    fixed4 lazerCol = tex2D(_LazerTex, diff / _LazerHeight);
+                //    col.rgb = col.rgb * (1 - lazerCol.a) + lazerCol.rgb * col.a;
+                //}
 
                 return col;
             }
