@@ -43,7 +43,5 @@ public class Summoner : MonoBehaviour
             _girl = Instantiate(_girlPrefab, pos, Quaternion.identity);
             _girl.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
-
-        GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>().text = hitPose.position.ToString();
     }
 }

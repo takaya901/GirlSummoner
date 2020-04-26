@@ -14,6 +14,32 @@
         Cull off
         Blend SrcAlpha OneMinusSrcAlpha 
 
+		Pass{
+  		  ZWrite ON
+  		  ColorMask 0
+		}
+		
+        CGPROGRAM
+        #pragma surface surf Standard alpha:fade
+        #pragma target 3.0
+        
+        sampler2D _MainTex;
+
+        struct Input {
+            float3 worldNormal;
+      		float3 viewDir;
+        };
+        
+        fixed4 _Color;
+
+        void surf (Input IN, inout SurfaceOutputStandard o) 
+        {
+			o.Albedo = fixed4(1, 1, 1, 1);
+			float alpha = 1 - (abs(dot(IN.viewDir, IN.worldNormal)));
+     		o.Alpha =  alpha*1.5f;
+        }
+        ENDCG		
+		
         Pass
         {
             CGPROGRAM
@@ -53,7 +79,7 @@
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
 
-                float diff = _Threshold - i.oPos.y;
+                float diff = i.oPos.x - _Threshold;
                 clip(diff);
                 if(diff < _LazerHeight){
                     fixed4 lazerCol = tex2D(_LazerTex, diff / _LazerHeight);

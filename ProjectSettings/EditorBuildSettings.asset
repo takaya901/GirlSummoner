@@ -92,12 +92,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/AssetStoreTools/ARFoundation/Scenes/UX/SampleUXScene.unity
     guid: 3b42d67a72bbc4004bf713db0e312326
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: bd894c4332ae64cfba3dbc0f6a727057
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TransferTest.unity
     guid: 0b2aed2c79e8d421296a74d14ccf017c
+  - enabled: 0
+    path: Assets/Scenes/SetHeight.unity
+    guid: 83698693b5dad4093a255e62fb493482
   m_configObjects:
     com.unity.xr.arkit.PlayerSettings: {fileID: 11400000, guid: 2d5fb8e61571b4e3897f221189089fd6,
       type: 2}
