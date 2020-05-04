@@ -1,9 +1,9 @@
-﻿Shader "Transfer/Plain"
+﻿Shader "Transfer/Face"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _Threshold("Threshold", Range(-1,1)) = 1
+        _Threshold("Threshold", Range(-1,1.5)) = 1
         _LazerTex("LazerTexture", 2D) = "white"{}
         _LazerHeight("LazerHeight", Range(0,1)) = 0.1
     }
@@ -79,8 +79,8 @@
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
 
-                float diff = i.oPos.x - _Threshold;
-                //float diff = _Threshold - i.oPos.y;
+                //float diff = i.oPos.y - _Threshold;
+                float diff = _Threshold - i.oPos.y;
                 clip(diff);
                 //if(diff < _LazerHeight){
                 //    fixed4 lazerCol = tex2D(_LazerTex, diff / _LazerHeight);

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -8,10 +9,16 @@ public class HeightHolder : MonoBehaviour
 {
     [SerializeField] TMP_InputField _field = null;
 
+    void Start()
+    {
+        FadeManager.FadeIn();
+    }
+
     public void SetHeight()
     {
         SceneManager.sceneLoaded += GameSceneLoaded;
-        SceneManager.LoadScene("Main");
+        FadeManager.FadeOut(1);
+        // SceneManager.LoadScene("Main");
     }
     
     void GameSceneLoaded(Scene next, LoadSceneMode mode)

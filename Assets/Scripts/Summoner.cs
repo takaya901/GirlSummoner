@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,14 +12,21 @@ public class Summoner : MonoBehaviour
 {
     [SerializeField] GameObject _girlPrefab = null;
     [SerializeField] FlushController _flush = null;
-    
+    [SerializeField] GameObject _screenSpaceUI = null;
+
     GameObject _girl;
     ARRaycastManager _raycastManager;
     static List<ARRaycastHit> _hits = new List<ARRaycastHit>();
     public float Height { get; set; }
+
+    /// <summary>
+    /// Invoked whenever an object is placed in on a plane.
+    /// </summary>
+    // public static event Action OnPlacedGirl;
     
     void Start()
     {
+        FadeManager.FadeIn();
         Input.backButtonLeavesApp = true;
         _raycastManager = GetComponent<ARRaycastManager>();
     }
@@ -42,13 +50,18 @@ public class Summoner : MonoBehaviour
         else {
             _girl = Instantiate(_girlPrefab, pos, Quaternion.identity);
             _girl.transform.localScale = Vector3.one * Height;
+            
+            // カメラに向くようにY軸のみ回転
+            var lookRotation= Quaternion.LookRotation(Camera.main.transform.position - _girl.transform.position, Vector3.up);
+            lookRotation.z = 0;
+            lookRotation.x = 0;
+            _girl.transform.rotation = lookRotation;
+            
             _flush.Flush();
         }
 
-        // カメラに向くようにY軸のみ回転
-        var lookRotation= Quaternion.LookRotation(Camera.main.transform.position - _girl.transform.position, Vector3.up);
-        lookRotation.z = 0;
-        lookRotation.x = 0;
-        _girl.transform.rotation = lookRotation;
+        _screenSpaceUI.SetActive(false);
+        //UIManagerにUI非表示のアクションを実行させる
+        // OnPlacedGirl?.Invoke();
     }
 }

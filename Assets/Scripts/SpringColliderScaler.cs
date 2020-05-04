@@ -24,12 +24,7 @@ public class SpringColliderScaler : MonoBehaviour
  
     void Awake()
     {
-        resizeMag = transform.localScale.x;
+        resizeMag = transform.localScale.x * 0.6f;
         ChangeRadius_Spring(gameObject);
-    }
-
-    void Update()
-    {
-        
     }
 }
