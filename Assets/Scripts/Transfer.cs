@@ -42,7 +42,7 @@ public class Transfer : MonoBehaviour
     string _threshold = "_Threshold";
     float _currentVelocity;
 
-    [SerializeField] Shader _transfer;
+    [SerializeField] Shader _transfer = null;
 
     void Start()
     {
@@ -65,16 +65,16 @@ public class Transfer : MonoBehaviour
         {
             if (material.shader != _transfer) return;
 
-            var height = Mathf.MoveTowards(material.GetFloat(_threshold), -1f, Time.deltaTime * 0.5f);
+            var height = Mathf.MoveTowards(material.GetFloat(_threshold), -1f, Time.deltaTime * 0.3f);
             material.SetFloat(_threshold, height);
 
             if (material.GetFloat(_threshold) <= -1f) {
                 material.shader = Shader.Find(_mat2Shader[material.name]);
             }
 
-            if (material.name == "hair (Instance)") {
-                GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>().text = material.shader.name;
-            }
+            // if (material.name == "hair (Instance)") {
+            //     GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>().text = material.shader.name;
+            // }
         }
     }
 }

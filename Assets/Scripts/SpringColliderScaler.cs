@@ -1,7 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
-using UnityEngine;
 using UnityChan; // Scope for SpringCollider/SpringBone
  
 // https: //dennou-note.blogspot.com/2015/04/sd.html

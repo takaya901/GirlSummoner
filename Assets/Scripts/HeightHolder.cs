@@ -6,12 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class HeightHolder : MonoBehaviour
 {
-    [SerializeField] TMP_InputField _field;
-    
-    void Start()
-    {
-        
-    }
+    [SerializeField] TMP_InputField _field = null;
 
     public void SetHeight()
     {
@@ -25,7 +20,7 @@ public class HeightHolder : MonoBehaviour
         var summoner= GameObject.FindWithTag("GameController").GetComponent<Summoner>();
     
         // データを渡す処理
-        summoner.Height = float.Parse(_field.text) / 100f;
+        summoner.Height = float.Parse(_field.text) / 100f * 0.6f;
 
         // イベントから削除
         SceneManager.sceneLoaded -= GameSceneLoaded;

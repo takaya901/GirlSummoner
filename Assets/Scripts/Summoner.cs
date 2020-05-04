@@ -9,7 +9,9 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(ARRaycastManager))]
 public class Summoner : MonoBehaviour
 {
-    [SerializeField] GameObject _girlPrefab;
+    [SerializeField] GameObject _girlPrefab = null;
+    [SerializeField] FlushController _flush = null;
+    
     GameObject _girl;
     ARRaycastManager _raycastManager;
     static List<ARRaycastHit> _hits = new List<ARRaycastHit>();
@@ -35,13 +37,14 @@ public class Summoner : MonoBehaviour
         var pos = hitPose.position;
         
         if (_girl) {
-            _girl.transform.position = pos;
+            // _girl.transform.position = pos;
         }
         else {
             _girl = Instantiate(_girlPrefab, pos, Quaternion.identity);
             _girl.transform.localScale = Vector3.one * Height;
+            _flush.Flush();
         }
-        
+
         // カメラに向くようにY軸のみ回転
         var lookRotation= Quaternion.LookRotation(Camera.main.transform.position - _girl.transform.position, Vector3.up);
         lookRotation.z = 0;
